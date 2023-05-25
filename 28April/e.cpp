@@ -20,19 +20,15 @@ int32_t main(){
     int _testCase;
     cin>>_testCase;
     while(_testCase--){
-        string _str;
-        cin>>_str;
-        string temp=_str;
-        if(temp[0]=='?'){
-            temp[0]='0';
+        int _num,_valk;
+        cin>>_num>>_valk;
+        if(_num%_valk){
+            cout<<1<<endl;
+            cout<<_num<<endl;
+        }else{
+            cout<<2<<endl;
+            cout<<_num-(_valk+1)<<" "<<(_valk+1)<<endl;
         }
-        int _num=_str.size();
-        for(int i=1;i<_num;i++){
-            if(_str[i]=='?'){
-                temp[i]=temp[i-1];
-            }
-        }
-        cout<<temp<<endl;
         
     }
   return 0;
