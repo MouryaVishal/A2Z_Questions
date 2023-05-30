@@ -20,15 +20,40 @@ int32_t main(){
     int _testCase;
     cin>>_testCase;
     while(_testCase--){
-        int _num,_valk;
-        cin>>_num>>_valk;
-        if(_num%_valk){
-            cout<<1<<endl;
-            cout<<_num<<endl;
-        }else{
-            cout<<2<<endl;
-            cout<<_num-(_valk+1)<<" "<<(_valk+1)<<endl;
+        int _num;
+        cin>>_num;
+        vector<int> vec;
+        fr(i,_num){
+            int x;
+            cin>>x;
+            vec.push_back(x);
         }
+        int small=2;
+        vector<int> vis(_num+1,0);
+        vector<int>ans;
+        ans.push_back(1);
+        vis[1]=1;
+        for(int i=1;i<_num;i++){
+            int prev=vec[i-1]+ans[i-1];
+            int rev=prev-vec[i];
+            if(rev<=small){
+                ans.push_back(small++);
+            }else{
+                if(!vis[rev])ans.push_back(rev);
+                else {
+                    while(rev<_num+1 && vis[rev]==1){
+                        rev++;
+                    }
+                    ans.push_back(rev);
+                    vis[rev]=1;
+                }
+            }
+        }
+
+        for(int i=0;i<_num;i++){
+            cout<<ans[i]<<" ";
+        }
+        cout<<endl;
         
     }
   return 0;
