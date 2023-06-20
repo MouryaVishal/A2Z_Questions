@@ -38,8 +38,11 @@ struct ListNode {
 };
 #define fr(i,num) for(int i=0;i<num;i++)
 
-class Solution{
-public:	
+
+// !Solution 
+class Solution
+{
+    public:
     int solRec(int i,int *arr,int n){
         if(i>=n)return 0;
         
@@ -79,16 +82,23 @@ public:
         }
         return prev;
     }
-	// calculate the maximum sum with out adjacent
-	int findMaxSum(int *arr, int n) {
-	   // return solRec(0,arr,n);
-	   // vector<int> dp(n,-1);
-	   // return solDp(0,arr,n,dp);
-	   
-	   return solSpaceOpt(arr,n);
-	}
+    //Function to find the maximum money the thief can get.
+    int FindMaxSum(int arr[], int n)
+    {
+        // return solRec(0,arr,n);
+        
+        // vector<int> dp(n,-1);
+        // return solDp(0,arr,n,dp);
+        
+        
+        // return solMemo(arr,n);
+        
+        
+        return solSpaceOpt(arr,n);
+        // Your code here
+    }
 };
-
+// !Solution 
 int main(){
     int num;
     cout<<"Enter number of element in an array:- ";
