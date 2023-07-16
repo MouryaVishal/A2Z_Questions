@@ -41,7 +41,69 @@ struct ListNode
 };
 #define fr(i, num) for (int i = 0; i < num; i++)
 
-// !Solution
+// ! Solution
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        unordered_map<char,int> mt;
+        for(auto a:t){
+            mt[a]++;
+        }
+
+        int reqMatch=t.size();
+        int currMatch=0;
+
+        int size=0;
+        int miniInd=-1;
+
+        int j=-1,i=-1;
+        unordered_map<char,int> ms;
+
+        int n=s.size();
+
+        while(true){
+            bool ac=false;
+            bool rel=false;
+
+            // Acquring charater
+            while(j < n-1 && currMatch < reqMatch   ){
+                j++;
+                if(mt.find(s[j])!=mt.end()){
+                    ms[s[j]]++;
+                    if(ms[s[j]]<=mt[s[j]]){
+                        currMatch++;
+                    }
+                }
+                ac=true;
+            }
+
+            // relising from start
+
+            while(i<j && currMatch==reqMatch){
+                i++;
+                if(size==0 || size>(j-i+1)){
+                    size=j-i+1;
+                    miniInd=i;
+                }
+                if(mt.find(s[i])!=mt.end()){
+                    ms[s[i]]--;
+                    if(ms[s[i]]<mt[s[i]]){
+                        currMatch--;
+                    }
+                }
+                rel=true;
+            }
+            if(!ac && !rel){
+                break;
+            }
+        }
+
+        if(miniInd==-1)return "";
+        
+        // cout<<size<<" "<<j<<" "<<i<<endl;
+        return s.substr(miniInd,size);
+    }
+};
 class Solution
 {
 public:
